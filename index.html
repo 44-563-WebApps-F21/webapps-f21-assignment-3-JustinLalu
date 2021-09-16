@@ -10,7 +10,7 @@
       <h2>Kansas City, MO</h2>
       <p>Kansas City is one the <b>largest</b> citites in <b>Missouri</b>. I like Kansas City because it's where I grew up and it's home to me.</p>
       <hr>
-      <h3>Directions to KC from LA</h3>
+      <h2>Directions to KC from LA</h3>
       
       <ol>
         <li>Get on US-101 S from N Main St</li>
@@ -63,5 +63,35 @@
           <td>$2.75</th>
         </tr>
       </table>
-  </body>
+      <hr>
+      <h2>Treap</h2>
+      <p><blockquote>In computer science, the treap and the randomized binary search tree are two closely related forms of binary search tree data structures that maintain a dynamic set of ordered keys and allow binary searches among the keys. After any sequence of insertions and deletions of keys, the shape of the tree is a random variable with the same probability distribution as a random binary tree; in particular, with high probability its height is proportional to the logarithm of the number of keys, so that each search, insertion, or deletion operation takes logarithmic time to perform.</blockquote></p>
+      <pre>
+        struct item {
+            int key, prior;
+            item *l, *r;
+            item () { }
+            item (int key) : key(key), prior(rand()), l(NULL), r(NULL) { }
+        };
+        typedef item* pitem;
+
+
+        
+        void split (pitem t, int key, pitem & l, pitem & r) {
+            if (!t)
+                l = r = NULL;
+            else if (t->key <= key)
+                split (t->r, key, t->r, r),  l = t;
+            else
+                split (t->l, key, l, t->l),  r = t;
+        }
+
+
+        
+        pitem l = nullptr, r = nullptr;
+        split(t, 5, l, r);
+        if (l) cout << "Left subtree size: " << (l->size) << endl;
+        if (r) cout << "Right subtree size: " << (r->size) << endl;
+      </pre>
+    </body>
 </html>
